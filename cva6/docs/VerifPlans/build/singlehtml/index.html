@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CORE-V CV32A6-step1 Design Verification Plan documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            CORE-V CV32A6-step1 Design Verification Plan
+              <img src="_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-dvplan_intro">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-dvplan_CVA6_CSR_ACCESS_VERIFICATION">Module: CVA6_CSR_ACCESS_VERIFICATION</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">CORE-V CV32A6-step1 Design Verification Plan</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CORE-V CV32A6-step1 Design Verification Plan  documentation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cv32a6-step1-design-verification-plan">
+<h1>CV32A6-step1 Design Verification Plan<a class="headerlink" href="#cv32a6-step1-design-verification-plan" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<span id="document-dvplan_intro"></span><section id="introduction">
+<span id="dvplan-intro"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The objective of this document is to describe what must be covered to verify CVA6 RISC-V processor.</p>
+<section id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h3>
+<div class="line-block">
+<div class="line">Copyright 2022 Thales</div>
+<div class="line">SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1</div>
+<div class="line">Licensed under the Solderpad Hardware License v 2.1 (the “License”);
+you may not use this file except in compliance with the License, or,
+at your option, the Apache License version 2.0. You may obtain a copy
+of the License at <a class="reference external" href="https://solderpad.org/licenses/SHL-2.1/">https://solderpad.org/licenses/SHL-2.1/</a>.</div>
+<div class="line">Unless required by applicable law or agreed to in writing, any work
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</div>
+</div>
+</section>
+<section id="standards-compliance">
+<h3>Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permalink to this heading"></a></h3>
+<p>To ease the reading, the reference to these specifications can be implicit in the requirements below. For the sake of precision, the requirements identify the versions of RISC-V extensions from these specifications.</p>
+<ul class="simple">
+<li><p><strong>[CVA6req]</strong> “CVA6 requirement specification”, <a class="reference external" href="https://github.com/openhwgroup/cva6/blob/master/docs/specifications/cva6_requirement_specification.rst">https://github.com/openhwgroup/cva6/blob/master/docs/specifications/cva6_requirement_specification.rst</a>, HASH#767c465.</p></li>
+<li><p><strong>[CVA6design]</strong> “CVA6 design document”, TO BE COMPLETED</p></li>
+<li><p><strong>[RVunpriv]</strong> “The RISC-V Instruction Set Manual, Volume I: User-Level ISA, Document Version 20191213”, Editors Andrew Waterman and Krste Asanović, RISC-V Foundation, December 13, 2019.</p></li>
+<li><p><strong>[RVpriv]</strong> “The RISC-V Instruction Set Manual, Volume II: Privileged Architecture, Document Version 20211203”, Editors Andrew Waterman, Krste Asanović and John Hauser, RISC-V Foundation, December 4, 2021.</p></li>
+<li><p><strong>[RVdbg]</strong> “RISC-V External Debug Support, Document Version 0.13.2”, Editors Tim Newsome and Megan Wachs, RISC-V Foundation, March 22, 2019.</p></li>
+<li><p><strong>[RVcompat]</strong> “RISC-V Architectural Compatibility Test Framework”, <a class="reference external" href="https://github.com/riscv-non-isa/riscv-arch-test">https://github.com/riscv-non-isa/riscv-arch-test</a>.</p></li>
+<li><p><strong>[AXI]</strong> AXI Specification, <a class="reference external" href="https://developer.arm.com/documentation/ihi0022/hc">https://developer.arm.com/documentation/ihi0022/hc</a>.</p></li>
+<li><p><strong>[CV-X-IF]</strong> Placeholder for the CV-X-IF coprocessor interface currently prepared at OpenHW Group; current version in <a class="reference external" href="https://docs.openhwgroup.org/projects/openhw-group-core-v-xif/">https://docs.openhwgroup.org/projects/openhw-group-core-v-xif/</a>.</p></li>
+<li><p><strong>[OpenPiton]</strong> “OpenPiton Microarchitecture Specification”, Princeton University, <a class="reference external" href="https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf">https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf</a>.</p></li>
+</ul>
+<p>CV32A6 is a 32-bit processor fully compliant with RISC-V specifications: [RVunpriv], [RVpriv] and [RVdbg] and passes [RVcompat] compatibility tests, as requested by [GEN-10] in [CVA6req].</p>
+</section>
+<section id="getting-start-verification">
+<h3>Getting start verification<a class="headerlink" href="#getting-start-verification" title="Permalink to this heading"></a></h3>
+<p>[TO BE COMPLETED]</p>
+</section>
+<section id="documentation-framework">
+<h3>Documentation framework<a class="headerlink" href="#documentation-framework" title="Permalink to this heading"></a></h3>
+<p>The framework of this document is aligned with the CVA6 design document [CVA6design].</p>
+<p>Description of the framework:</p>
+<ul class="simple">
+<li><p>Processor is a subsystem</p></li>
+<li><p>Processor subsystems are split into several modules</p></li>
+<li><p>Modules are verified separately</p></li>
+</ul>
+</section>
+<section id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this heading"></a></h3>
+<div class="line-block">
+<div class="line">Jean-Roch Coulon
+(<a class="reference external" href="mailto:jean-roch&#46;coulon&#37;&#52;&#48;thalesgroup&#46;com">jean-roch<span>&#46;</span>coulon<span>&#64;</span>thalesgroup<span>&#46;</span>com</a>)</div>
+</div>
+<p>[TO BE COMPLETED]</p>
+</section>
+</section>
+<span id="document-dvplan_CVA6_CSR_ACCESS_VERIFICATION"></span><section id="module-cva6-csr-access-verification">
+<h2>Module: CVA6_CSR_ACCESS_VERIFICATION<a class="headerlink" href="#module-cva6-csr-access-verification" title="Permalink to this heading"></a></h2>
+<section id="feature-machine-isa-misa">
+<h3>Feature: Machine ISA(MISA)<a class="headerlink" href="#feature-machine-isa-misa" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-misa">
+<h4>Sub-feature: 000_MISA<a class="headerlink" href="#sub-feature-000-misa" title="Permalink to this heading"></a></h4>
+<section id="item-000">
+<h5>Item: 000<a class="headerlink" href="#item-000" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong> riscv-privileged-20211203</p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MISA CSR.</p>
+<p>Address Offset 	: 0x301<br />Width (bits) 		: 32<br />Access Type 		: RO<br />Reset Value 		: 0x4094_1104<br />privilige mode	 : Machine Mode</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read value of the MISA CSR should match the expected default reset value 0x4094_1104.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F000_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="item-001">
+<h5>Item: 001<a class="headerlink" href="#item-001" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MISA CSR by writing random data and Read the returned value to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>After writing into MISA CSR with random data, the default value of the MISA CSR remains unchanged.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F000_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-interrupt-enable-mie">
+<h3>Feature: Machine Interrupt Enable(MIE)<a class="headerlink" href="#feature-machine-interrupt-enable-mie" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mie">
+<h4>Sub-feature: 000_MIE<a class="headerlink" href="#sub-feature-000-mie" title="Permalink to this heading"></a></h4>
+<section id="id1">
+<h5>Item: 000<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for Machine Interrupt Enable(MIE) CSR.</p>
+<p>Address Offset : 0x304<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read value of the MIE CSR should match the expected default reset value 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F001_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h5>Item: 001<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MIE CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values should matches the written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F001_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-trap-vector-mtvec">
+<h3>Feature: Machine Trap Vector(MTVEC)<a class="headerlink" href="#feature-machine-trap-vector-mtvec" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mtvec">
+<h4>Sub-feature: 000_MTVEC<a class="headerlink" href="#sub-feature-000-mtvec" title="Permalink to this heading"></a></h4>
+<section id="id3">
+<h5>Item: 000<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MTVEC CSR.</p>
+<p>Address Offset : 0x305<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MTVEC CSR to check default POR value that should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F002_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h5>Item: 001<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MTVEC CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values OF MTVEC CSR should matches the written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F002_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-counter-enable-mcountern">
+<h3>Feature: Machine Counter Enable(MCOUNTERN)<a class="headerlink" href="#feature-machine-counter-enable-mcountern" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mcountern">
+<h4>Sub-feature: 000_MCOUNTERN<a class="headerlink" href="#sub-feature-000-mcountern" title="Permalink to this heading"></a></h4>
+<section id="id5">
+<h5>Item: 000<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MCOUNTERN CSR.</p>
+<p>Address Offset : 0x306<br />Width (bits) 	 : 32<br />Access Type 	  : RW<br />Reset Value 	  : 0x00000000<br />priviliged mode  Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MCOUNTERN CSR, to check default POR value that should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F003_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h5>Item: 001<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MCOUNTERN CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values should matches with written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F003_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-scratch-mscratch">
+<h3>Feature: Machine Scratch(MSCRATCH)<a class="headerlink" href="#feature-machine-scratch-mscratch" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mscratch">
+<h4>Sub-feature: 000_MSCRATCH<a class="headerlink" href="#sub-feature-000-mscratch" title="Permalink to this heading"></a></h4>
+<section id="id7">
+<h5>Item: 000<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MSCRATCH CSR.</p>
+<p>Address Offset : 0x340<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MSCRATCH CSR to check default POR value that should be equal to 0x00000000.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F004_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id8">
+<h5>Item: 001<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MSCRATCH CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values of MSCRATCH CSR should matches with written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F004_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-exception-program-counter-mepc">
+<h3>Feature: Machine Exception Program Counter(MEPC)<a class="headerlink" href="#feature-machine-exception-program-counter-mepc" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mepc">
+<h4>Sub-feature: 000_MEPC<a class="headerlink" href="#sub-feature-000-mepc" title="Permalink to this heading"></a></h4>
+<section id="id9">
+<h5>Item: 000<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MEPC CSR.</p>
+<p>Address Offset : 0x341<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MEPC CSR to check default POR value that should be equal to 0x00000000.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F005_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id10">
+<h5>Item: 001<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MEPC CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values should matches with written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F005_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-cause-mcause">
+<h3>Feature: Machine Cause(MCAUSE)<a class="headerlink" href="#feature-machine-cause-mcause" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mcause">
+<h4>Sub-feature: 000_MCAUSE<a class="headerlink" href="#sub-feature-000-mcause" title="Permalink to this heading"></a></h4>
+<section id="id11">
+<h5>Item: 000<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MCAUSE CSR.</p>
+<p>Address Offset : 0x342<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MCAUSE CSR to check default POR value which should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F006_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h5>Item: 001<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MCAUSE CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values should matches with written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F006_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-trap-value-mtval">
+<h3>Feature: Machine Trap Value(MTVAL)<a class="headerlink" href="#feature-machine-trap-value-mtval" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mtval">
+<h4>Sub-feature: 000_MTVAL<a class="headerlink" href="#sub-feature-000-mtval" title="Permalink to this heading"></a></h4>
+<section id="id13">
+<h5>Item: 000<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MTVAL CSR.</p>
+<p>Address Offset : 0x343<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MTVAL CSR to check default POR value that should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F007_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id14">
+<h5>Item: 001<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MTVAL CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values should matches with written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F007_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-interrupt-pending-mip">
+<h3>Feature: Machine Interrupt Pending(MIP<a class="headerlink" href="#feature-machine-interrupt-pending-mip" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mip">
+<h4>Sub-feature: 000_MIP<a class="headerlink" href="#sub-feature-000-mip" title="Permalink to this heading"></a></h4>
+<section id="id15">
+<h5>Item: 000<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MIP CSR.</p>
+<p>Address Offset : 0x344<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MIP CSR, to check default POR value that should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F008_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id16">
+<h5>Item: 001<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MP CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values of MIP CSR should matches with written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F008_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-m-mode-cycle-counter-mcycleh">
+<h3>Feature: M-Mode Cycle Counter(MCYCLEH)<a class="headerlink" href="#feature-m-mode-cycle-counter-mcycleh" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mcycleh">
+<h4>Sub-feature: 000_MCYCLEH<a class="headerlink" href="#sub-feature-000-mcycleh" title="Permalink to this heading"></a></h4>
+<section id="id17">
+<h5>Item: 000<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MCYCLEH CSR.</p>
+<p>Address Offset : 0xB80<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MCYCLEH CSR to check default POR value that should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F009_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id18">
+<h5>Item: 001<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MCYCLEH CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values of MCYCLEH CSR should matches with written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F009_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-instruction-retired-counter-minstreth">
+<h3>Feature: Machine Instruction Retired Counter(minstreth)<a class="headerlink" href="#feature-machine-instruction-retired-counter-minstreth" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-minstreth">
+<h4>Sub-feature: 000_MINSTRETH<a class="headerlink" href="#sub-feature-000-minstreth" title="Permalink to this heading"></a></h4>
+<section id="id19">
+<h5>Item: 000<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MINSTRETH CSR.</p>
+<p>Address Offset : 0xB82<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MINSTRETH CSR, to check default POR value that should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F010_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id20">
+<h5>Item: 001<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying R/W access of a MINSTRETH CSR by writing random valid data and Read back CSR values to check correctness.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>The read values of MINSTRETH should matches with written random data values.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F010_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-hardware-thread-id-mhartid">
+<h3>Feature: Machine Hardware Thread ID(MHARTID)<a class="headerlink" href="#feature-machine-hardware-thread-id-mhartid" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mhartid">
+<h4>Sub-feature: 000_MHARTID<a class="headerlink" href="#sub-feature-000-mhartid" title="Permalink to this heading"></a></h4>
+<section id="id21">
+<h5>Item: 000<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MHARTID CSR.</p>
+<p>Address Offset : 0xF14	<br />Width (bits) : 32<br />Access Type : RO<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MHARTID CSR to check default POR value that should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F011_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id22">
+<h5>Item: 001<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying MHARTID CSR access mode by attempting a write.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Attempts to access MHARTID CSR by writing will raise illegal instruction exceptions.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F011_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-architecture-id-marchid">
+<h3>Feature: Machine Architecture ID(MARCHID)<a class="headerlink" href="#feature-machine-architecture-id-marchid" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-marchid">
+<h4>Sub-feature: 000_MARCHID<a class="headerlink" href="#sub-feature-000-marchid" title="Permalink to this heading"></a></h4>
+<section id="id23">
+<h5>Item: 000<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MARCHID CSR.</p>
+<p>Address Offset : 0xF12<br />Width (bits) : 32<br />Access Type : RW<br />Reset Value : 0x00000000<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MARCHID CSR to check default POR value that should be equal to 0x00000000</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F012_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id24">
+<h5>Item: 001<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verifying MARCHID CSR access mode by attempting write.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Attempts to access MARCHID by writing will raise illegal instruction exceptions.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F012_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-vendor-id-register-mvendorid">
+<h3>Feature: Machine Vendor ID Register(MVENDORID)<a class="headerlink" href="#feature-machine-vendor-id-register-mvendorid" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mvendorid">
+<h4>Sub-feature: 000_MVENDORID<a class="headerlink" href="#sub-feature-000-mvendorid" title="Permalink to this heading"></a></h4>
+<section id="id25">
+<h5>Item: 000<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MVENDORID CSR.</p>
+<p>Address Offset : 0xF11<br />Width (bits) : 32<br />Access Type : R0<br />Reset Value : 0x00000003<br />priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MVENDORID CSR to check default POR value that should be equal to 0x00000003</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F013_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id26">
+<h5>Item: 001<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verify MVENDORID CSR by attempting write.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Attempts to access MVENDORID CSR by writing will raise an illegal instruction exceptions.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F013_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="feature-machine-implementation-id-mimpid">
+<h3>Feature: Machine Implementation ID(MIMPID)<a class="headerlink" href="#feature-machine-implementation-id-mimpid" title="Permalink to this heading"></a></h3>
+<section id="sub-feature-000-mimpid">
+<h4>Sub-feature: 000_MIMPID<a class="headerlink" href="#sub-feature-000-mimpid" title="Permalink to this heading"></a></h4>
+<section id="id27">
+<h5>Item: 000<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>To verify the Power-on Reset value for MIMPID CSR.</p>
+<p>Address Offset : 0xF13<br />Width (bits) : 32<br />Access Type : RO<br />Reset Value : 0x00000000</p>
+<p>priviliged mode : Machine</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Read MIMPID CSR to check default POR value that should be equal to 0x00000000.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> Check RM</p></li>
+<li><p><strong>Test Type:</strong> Directed SelfChk</p></li>
+<li><p><strong>Coverage Method:</strong> N/A</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F014_S000_I000</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+<section id="id28">
+<h5>Item: 001<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h5>
+<ul>
+<li><p><strong>Requirement location:</strong></p></li>
+<li><p><strong>Feature Description</strong></p>
+<p>Verify MIMPID CSR by attempting write on it.</p>
+</li>
+<li><p><strong>Verification Goals</strong></p>
+<p>Attempts to access MIMPID CSR by write will raise an e illegal instruction exceptions.</p>
+</li>
+<li><p><strong>Pass/Fail Criteria:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Test Type:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Coverage Method:</strong> NDY (Not Defined Yet)</p></li>
+<li><p><strong>Applicable Cores:</strong> CV32A6_v0.1.0</p></li>
+<li><p><strong>Unique verification tag:</strong> VP_CVA6_CSR_VERIFICATION_F014_S000_I001</p></li>
+<li><p><strong>Link to Coverage:</strong></p></li>
+<li><p><strong>Comments</strong></p>
+<p><em>(none)</em></p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Thales Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
