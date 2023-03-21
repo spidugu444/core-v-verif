@@ -77,7 +77,7 @@ VVP_CVA6_CSR_VERIFICATION_F012_S000_I000
 p34
 sVdescription
 p35
-V\u000aTo verify the Power-on Reset value for MARCHID CSR.\u000a\u000aAddress Offset : 0xF12\u000aWidth (bits) : 32\u000aAccess Type : RW\u000aReset Value : 0x00000000\u000apriviliged mode : Machine
+V\u000aTo verify the Power-on Reset value for MARCHID CSR.\u000a\u000aAddress Offset : 0xF12\u000aWidth (bits) : 32\u000aAccess Type : RO\u000aReset Value : 0x00000000\u000apriviliged mode : Machine
 p36
 sVpurpose
 p37
