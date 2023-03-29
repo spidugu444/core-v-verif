@@ -1,0 +1,98 @@
+- csr: CSR_MIP
+  description: >
+    Machine Interrupt Pending
+  address: 0x344
+  privilege_mode: M
+  rv32:
+    - field_name: Reserved 
+      description: >
+       Reserved for future use
+      type: R
+      reset_val: 0
+      msb: 31
+      lsb: 12
+    - field_name: MEIP 
+      description: >
+       indicate external interrupts pending
+      type: R
+      reset_val: 0
+      msb: 11
+      lsb: 11
+    - field_name: Always zero 
+      description: >
+       Always zero
+      type: R
+      reset_val: 0
+      msb: 10
+      lsb: 10
+    - field_name: SEIP  
+      description: >
+        SEIP may be written by M-mode software to indicate to S-mode that an external interrupt is pending               
+      type: RW
+      reset_val: 0
+      msb: 9
+      lsb: 9
+    - field_name: Always zero 
+      description: >
+       Always zero
+      type: R
+      reset_val: 0
+      msb: 8
+      lsb: 8
+    - field_name: MTIP 
+      description: >
+       Correspond to timer interrupt-pending bits for machine interrupt 
+      type: R
+      reset_val: 0
+      msb: 7
+      lsb: 7
+    - field_name: Reserved 
+      description: >
+       Reserved for future use 
+      type: R
+      reset_val: 0
+      msb: 6
+      lsb: 6   
+    - field_name: STIP 
+      description: >
+        Correspond to timer interrupt-pending bits for Supervisor interrupt  
+      type: RW
+      reset_val: 0
+      msb: 5
+      lsb: 5    
+    - field_name: UTIP 
+      description: >
+         Correspond to timer interrupt-pending bits for user interrupt 
+      type: R
+      reset_val: 0
+      msb: 4
+      lsb: 4
+    - field_name: MSIP 
+      description: >
+       use for remote harts to provide machine-mode interprocessor interrupts 
+      type: R
+      reset_val: 0
+      msb: 3
+      lsb: 3
+    - field_name: Reserved 
+      description: >
+       Reserved for future use 
+      type: R
+      reset_val: 0
+      msb: 2
+      lsb: 2
+    - field_name: SSIP 
+      description: >
+        A hart to directly write its own SSIP bits when running in the appropriate mode
+      type: RW
+      reset_val: 0
+      msb: 1
+      lsb: 1
+    - field_name: Always 0 
+      description: >
+        Always 0 
+      type: R
+      reset_val: 0
+      msb: 0
+      lsb: 0
+
