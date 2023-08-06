@@ -92,15 +92,15 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_csr-access_F001_S003_I000
-        description: This test scnerio involves applying inverted reset values on
-          CSR during the system reset process.
+        description: Check the behaviour of the RISC-V CVA6 CSR when reset inverted
+          values are loaded.
         reqt_doc: ''
         ref_mode: page
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: To verify system's performance and stability when when inverted
-          reset value are applied on CSR.
+        verif_goals: "1. Verify CSR reading post write operation.\n2. Verify if the
+          core correctly handles inverted CSR values."
         pfc: 1
         test_type: 1
         cov_method: 1
