@@ -328,7 +328,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
     1.  Verify CSR reading post write operation.
         
-    2.  Verify if the core correctly handles inverted CSR values.
+    2.  check that writes to a read-only CSRs will raise illegal instruction or not.
         
 *   **Pass/Fail Criteria:** Self-Check
     
@@ -371,7 +371,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Applicable Cores:** CV32A6\_v0.1.0
     
-*   **Unique verification tag:** VP\_CSR\_VERIFICATION\_F002\_S000\_I000
+*   **Unique verification tag:** VP\_CSR\_VERIFICATION\_F004\_S000\_I000
     
 *   **Link to Coverage:**
     
@@ -404,7 +404,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Applicable Cores:** CV32A6\_v0.1.0
     
-*   **Unique verification tag:** VP\_CSR\_VERIFICATION\_F002\_S001\_I000
+*   **Unique verification tag:** VP\_CSR\_VERIFICATION\_F004\_S001\_I000
     
 *   **Link to Coverage:**
     
@@ -436,7 +436,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Applicable Cores:** CV32A6\_v0.1.0
     
-*   **Unique verification tag:** VP\_CSR\_VERIFICATION\_F002\_S002\_I000
+*   **Unique verification tag:** VP\_CSR\_VERIFICATION\_F004\_S002\_I000
     
 *   **Link to Coverage:**
     
@@ -469,7 +469,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Applicable Cores:** CV32A6\_v0.1.0
     
-*   **Unique verification tag:** VP\_csr-access\_F002\_S003\_I000
+*   **Unique verification tag:** VP\_csr-access\_F004\_S003\_I000
     
 *   **Link to Coverage:**
     
@@ -478,7 +478,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     _(none)_
     
 
-### Feature: User\_Mode\_Counter\_CSRs(cycle, instret, cycleh, instreth)[](#feature-user-mode-counter-csrs-cycle-instret-cycleh-instreth "Permalink to this heading")
+### Feature: CVA6\_User\_Mode\_Counter\_CSRs(cycle, instret, cycleh, instreth)[](#feature-cva6-user-mode-counter-csrs-cycle-instret-cycleh-instreth "Permalink to this heading")
 
 #### Sub-feature: 000\_Power-on-reset (POR) values of CSR[](#id20 "Permalink to this heading")
 
@@ -581,22 +581,20 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     _(none)_
     
 
-#### Sub-feature: 003\_Testing CSR with inverted reset value[](#id25 "Permalink to this heading")
+#### Sub-feature: 003\_Verify the user mode counter behaviour at maximum values[](#sub-feature-003-verify-the-user-mode-counter-behaviour-at-maximum-values "Permalink to this heading")
 
-##### Item: 000[](#id26 "Permalink to this heading")
+##### Item: 000[](#id25 "Permalink to this heading")
 
 *   **Requirement location:**
     
 *   **Feature Description**
     
-    Check the behaviour of the RISC-V CVA6 CSR when reset inverted values are loaded.
+    check the behaviour of athe RISC-V User mode counter CSRs when it reaches to maximum value.
     
 *   **Verification Goals**
     
-    1.  Verify CSR reading post write operation.
-        
-    2.  Verify if the core correctly handles inverted CSR values.
-        
+    Ensure that when the User Mode counter CSRs reaches to maximum values, it does not overflow or cause any unexpected values.
+    
 *   **Pass/Fail Criteria:** Self-Check
     
 *   **Test Type:** Directed SelfChk
@@ -614,11 +612,11 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     _(none)_
     
 
-### Feature: Machine\_mode\_counter\_csr(mcycle,mcycleh,minstret,minstreth)[](#feature-machine-mode-counter-csr-mcycle-mcycleh-minstret-minstreth "Permalink to this heading")
+### Feature: CVA6\_Machine\_mode\_counter\_csr(mcycle,mcycleh,minstret,minstreth)[](#feature-cva6-machine-mode-counter-csr-mcycle-mcycleh-minstret-minstreth "Permalink to this heading")
 
-#### Sub-feature: 000\_Power-on-reset (POR) values of CSR[](#id27 "Permalink to this heading")
+#### Sub-feature: 000\_Power-on-reset (POR) values of CSR[](#id26 "Permalink to this heading")
 
-##### Item: 000[](#id28 "Permalink to this heading")
+##### Item: 000[](#id27 "Permalink to this heading")
 
 *   **Requirement location:** https://docs.openhwgroup.org/projects/cva6-user-manual/01\_cva6\_user/CV32A6\_Control\_Status\_Registers.html
     
@@ -638,7 +636,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Applicable Cores:** CV32A6\_v0.1.0
     
-*   **Unique verification tag:** VP\_csr-access\_F004\_S000\_I000
+*   **Unique verification tag:** VP\_csr-access\_F002\_S000\_I000
     
 *   **Link to Coverage:**
     
@@ -647,9 +645,9 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     _(none)_
     
 
-#### Sub-feature: 001\_Counter \_CSRs\_functionality\_checking[](#id29 "Permalink to this heading")
+#### Sub-feature: 001\_Counter \_CSRs\_functionality\_checking[](#id28 "Permalink to this heading")
 
-##### Item: 000[](#id30 "Permalink to this heading")
+##### Item: 000[](#id29 "Permalink to this heading")
 
 *   **Requirement location:** https://docs.openhwgroup.org/projects/cva6-user-manual/01\_cva6\_user/CV32A6\_Control\_Status\_Registers.html
     
@@ -677,7 +675,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Applicable Cores:** CV32A6\_v0.1.0
     
-*   **Unique verification tag:** VP\_csr-access\_F004\_S001\_I000
+*   **Unique verification tag:** VP\_csr-access\_F002\_S001\_I000
     
 *   **Link to Coverage:**
     
@@ -686,9 +684,9 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     _(none)_
     
 
-#### Sub-feature: 002\_CSR access in different privilege modes[](#id31 "Permalink to this heading")
+#### Sub-feature: 002\_CSR access in different privilege modes[](#id30 "Permalink to this heading")
 
-##### Item: 000[](#id32 "Permalink to this heading")
+##### Item: 000[](#id31 "Permalink to this heading")
 
 *   **Requirement location:** https://docs.openhwgroup.org/projects/cva6-user-manual/01\_cva6\_user/CV32A6\_Control\_Status\_Registers.html
     
@@ -709,7 +707,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Applicable Cores:** CV32A6\_v0.1.0
     
-*   **Unique verification tag:** VP\_csr-access\_F004\_S002\_I000
+*   **Unique verification tag:** VP\_csr-access\_F002\_S002\_I000
     
 *   **Link to Coverage:**
     
@@ -718,22 +716,20 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     _(none)_
     
 
-#### Sub-feature: 003\_Testing CSR with inverted RESET value[](#id33 "Permalink to this heading")
+#### Sub-feature: 003\_Verify the counter behaviour at maximum value[](#sub-feature-003-verify-the-counter-behaviour-at-maximum-value "Permalink to this heading")
 
-##### Item: 000[](#id34 "Permalink to this heading")
+##### Item: 000[](#id32 "Permalink to this heading")
 
 *   **Requirement location:**
     
 *   **Feature Description**
     
-    Check the behaviour of the RISC-V CVA6 CSR when reset inverted values are loaded.
+    check the behaviour of athe RISC-V Machine mode counter CSRs when it reaches to maximum value.
     
 *   **Verification Goals**
     
-    1.  Verify CSR reading post write operation.
-        
-    2.  Verify if the core correctly handles inverted CSR values.
-        
+    Ensure that when the Machine Mode counter CSRs reaches to maximum values, it does not overflow or cause any unexpected values.
+    
 *   **Pass/Fail Criteria:** Self-Check
     
 *   **Test Type:** Directed SelfChk
@@ -742,7 +738,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Applicable Cores:** CV32A6\_v0.1.0
     
-*   **Unique verification tag:** VP\_csr-access\_F004\_S003\_I000
+*   **Unique verification tag:** VP\_csr-access\_F002\_S003\_I000
     
 *   **Link to Coverage:**
     
