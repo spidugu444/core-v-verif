@@ -99,8 +99,8 @@ subfeatures: !!omap
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: "1. Verify CSR reading post write operation.\n2. Verify if the
-          core correctly handles inverted CSR values."
+        verif_goals: "1. Verify CSR reading post write operation.\n2. check that writes
+          to a read-only CSRs will raise illegal instruction or not."
         pfc: 1
         test_type: 1
         cov_method: 1

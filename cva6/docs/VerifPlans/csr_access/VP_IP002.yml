@@ -3,17 +3,17 @@ next_elt_id: 4
 name: CVA6_Supervisor_mode_RW_CSRs(sstatus,stvec, sip, sie, scounteren, sscratch,
   sepc, scause, stval, satp, pmpaddr[0..7], pmpcfg[0..1])
 id: 2
-display_order: 2
+display_order: 4
 subfeatures: !!omap
 - 000_Power-on-reset (POR) values of CSR: !Subfeature
     name: 000_Power-on-reset (POR) values of CSR
-    tag: VP_CSR_VERIFICATION_F002_S000
+    tag: VP_CSR_VERIFICATION_F004_S000
     next_elt_id: 1
     display_order: 0
     items: !!omap
     - '000': !VerifItem
         name: '000'
-        tag: VP_CSR_VERIFICATION_F002_S000_I000
+        tag: VP_CSR_VERIFICATION_F004_S000_I000
         description: Upon reset, RISC-V CVA6 Supervisor mode RW CSR must initialize
           to their respective POR value.
         reqt_doc: 
@@ -32,13 +32,13 @@ subfeatures: !!omap
         comments: ''
 - 001_CSR write and read operations: !Subfeature
     name: 001_CSR write and read operations
-    tag: VP_CSR_VERIFICATION_F002_S001
+    tag: VP_CSR_VERIFICATION_F004_S001
     next_elt_id: 1
     display_order: 1
     items: !!omap
     - '000': !VerifItem
         name: '000'
-        tag: VP_CSR_VERIFICATION_F002_S001_I000
+        tag: VP_CSR_VERIFICATION_F004_S001_I000
         description: Check the correctness of RISCV CVA6 Supervisor Mode RW CSR by
           writing random values like 0xa5a5a5a5, 0x5a5a5a5a, 0xffa1ae40.. and read
           using the CSR instructions defined in the instruction set architecture (ISA).
@@ -59,13 +59,13 @@ subfeatures: !!omap
         comments: ''
 - 002_CSR access in different privilege modes: !Subfeature
     name: 002_CSR access in different privilege modes
-    tag: VP_CSR_VERIFICATION_F002_S002
+    tag: VP_CSR_VERIFICATION_F004_S002
     next_elt_id: 1
     display_order: 2
     items: !!omap
     - '000': !VerifItem
         name: '000'
-        tag: VP_CSR_VERIFICATION_F002_S002_I000
+        tag: VP_CSR_VERIFICATION_F004_S002_I000
         description: Accessing RISC-V CVA6 Supervisor Mode CSR in different privilege
           modes (User,Supervisor and Machine modes).
         reqt_doc: 
@@ -87,13 +87,13 @@ subfeatures: !!omap
 - ? "003_Testing CSR with inverted reset value\n"
   : !Subfeature
     name: "003_Testing CSR with inverted reset value\n"
-    tag: VP_csr-access_F002_S003
+    tag: VP_csr-access_F004_S003
     next_elt_id: 1
     display_order: 3
     items: !!omap
     - '000': !VerifItem
         name: '000'
-        tag: VP_csr-access_F002_S003_I000
+        tag: VP_csr-access_F004_S003_I000
         description: Check the behaviour of the RISC-V CVA6 CSR when reset inverted
           values are loaded.
         reqt_doc: ''

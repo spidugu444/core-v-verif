@@ -1,6 +1,6 @@
 !Feature
 next_elt_id: 4
-name: User_Mode_Counter_CSRs(cycle, instret, cycleh, instreth)
+name: CVA6_User_Mode_Counter_CSRs(cycle, instret, cycleh, instreth)
 id: 3
 display_order: 3
 subfeatures: !!omap
@@ -88,9 +88,9 @@ subfeatures: !!omap
         cores: 8
         coverage_loc: ''
         comments: ''
-- ? "003_Testing CSR with inverted reset value\n"
+- ? "003_Verify the user mode counter behaviour at maximum values\n"
   : !Subfeature
-    name: "003_Testing CSR with inverted reset value\n"
+    name: "003_Verify the user mode counter behaviour at maximum values\n"
     tag: VP_csr-access_F003_S003
     next_elt_id: 1
     display_order: 3
@@ -98,15 +98,15 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_csr-access_F003_S003_I000
-        description: Check the behaviour of the RISC-V CVA6 CSR when reset inverted
-          values are loaded.
+        description: check the behaviour of athe RISC-V User mode counter CSRs when
+          it reaches to maximum value.
         reqt_doc: ''
         ref_mode: page
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: "1. Verify CSR reading post write operation.\n2. Verify if the
-          core correctly handles inverted CSR values."
+        verif_goals: Ensure that when the User Mode counter CSRs reaches to maximum
+          values, it does not overflow or cause any unexpected values.
         pfc: 1
         test_type: 1
         cov_method: 1

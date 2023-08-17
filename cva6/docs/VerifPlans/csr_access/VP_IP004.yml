@@ -1,21 +1,22 @@
 !Feature
 next_elt_id: 4
-name: Machine_mode_counter_csr(mcycle,mcycleh,minstret,minstreth)
+name: CVA6_Machine_mode_counter_csr(mcycle,mcycleh,minstret,minstreth)
 id: 4
-display_order: 4
+display_order: 2
 subfeatures: !!omap
 - 000_Power-on-reset (POR) values of CSR: !Subfeature
     name: 000_Power-on-reset (POR) values of CSR
-    tag: VP_csr-access_F004_S000
+    tag: VP_csr-access_F002_S000
     next_elt_id: 1
     display_order: 0
     items: !!omap
     - '000': !VerifItem
         name: '000'
-        tag: VP_csr-access_F004_S000_I000
+        tag: VP_csr-access_F002_S000_I000
         description: Upon reset, RISC-V CVA6 User mode counter CSRs must initialize
           to their respective POR value.
-        reqt_doc: ' https://docs.openhwgroup.org/projects/cva6-user-manual/01_cva6_user/CV32A6_Control_Status_Registers.html'
+        reqt_doc: 
+          https://docs.openhwgroup.org/projects/cva6-user-manual/01_cva6_user/CV32A6_Control_Status_Registers.html
         ref_mode: page
         ref_page: ''
         ref_section: ''
@@ -31,13 +32,13 @@ subfeatures: !!omap
 - ? "001_Counter _CSRs_functionality_checking\n"
   : !Subfeature
     name: "001_Counter _CSRs_functionality_checking\n"
-    tag: VP_csr-access_F004_S001
+    tag: VP_csr-access_F002_S001
     next_elt_id: 1
     display_order: 1
     items: !!omap
     - '000': !VerifItem
         name: '000'
-        tag: VP_csr-access_F004_S001_I000
+        tag: VP_csr-access_F002_S001_I000
         description: "This feature pertains to the verification of functionality of
           RISC-V mcycle, mcycleh, minstret and minstreth Control Status Register (CSR).
           In a RISC-V architecture\n\n1.’mcycle’ and ‘mcycleh’ are user-level CSR
@@ -65,13 +66,13 @@ subfeatures: !!omap
         comments: ''
 - 002_CSR access in different privilege modes: !Subfeature
     name: 002_CSR access in different privilege modes
-    tag: VP_csr-access_F004_S002
+    tag: VP_csr-access_F002_S002
     next_elt_id: 1
     display_order: 2
     items: !!omap
     - '000': !VerifItem
         name: '000'
-        tag: VP_csr-access_F004_S002_I000
+        tag: VP_csr-access_F002_S002_I000
         description: Accessing RISC-V CVA6 user Machine mode counter CSR in different
           privilege modes (User, Supervisor and Machine modes).
         reqt_doc: 
@@ -90,24 +91,24 @@ subfeatures: !!omap
         cores: 8
         coverage_loc: ''
         comments: ''
-- 003_Testing CSR with inverted RESET value: !Subfeature
-    name: 003_Testing CSR with inverted RESET value
-    tag: VP_csr-access_F004_S003
+- 003_Verify the counter behaviour at maximum value: !Subfeature
+    name: 003_Verify the counter behaviour at maximum value
+    tag: VP_csr-access_F002_S003
     next_elt_id: 1
     display_order: 3
     items: !!omap
     - '000': !VerifItem
         name: '000'
-        tag: VP_csr-access_F004_S003_I000
-        description: Check the behaviour of the RISC-V CVA6 CSR when reset inverted
-          values are loaded.
+        tag: VP_csr-access_F002_S003_I000
+        description: check the behaviour of athe RISC-V Machine mode counter CSRs
+          when it reaches to maximum value.
         reqt_doc: ''
         ref_mode: page
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: "1. Verify CSR reading post write operation.\n2. Verify if the
-          core correctly handles inverted CSR values."
+        verif_goals: Ensure that when the Machine Mode counter CSRs reaches to maximum
+          values, it does not overflow or cause any unexpected values.
         pfc: 1
         test_type: 1
         cov_method: 1
