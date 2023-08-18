@@ -91,8 +91,9 @@ subfeatures: !!omap
         cores: 8
         coverage_loc: ''
         comments: ''
-- 003_Verify the counter behaviour at maximum value: !Subfeature
-    name: 003_Verify the counter behaviour at maximum value
+- 003_Verify the Machine mode counter CSRs behaviour after reaching maximum value: !Subfeature
+    name: 003_Verify the Machine mode counter CSRs behaviour after reaching maximum
+      value
     tag: VP_csr-access_F002_S003
     next_elt_id: 1
     display_order: 3
@@ -100,15 +101,15 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_csr-access_F002_S003_I000
-        description: check the behaviour of athe RISC-V Machine mode counter CSRs
-          when it reaches to maximum value.
+        description: check the behaviour of the RISC-V Machine mode counter CSRs when
+          it reaches to maximum value.
         reqt_doc: ''
         ref_mode: page
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: Ensure that when the Machine Mode counter CSRs reaches to maximum
-          values, it does not overflow or cause any unexpected values.
+        verif_goals: Ensure that Machine mode counter CSRs is updated to reset value
+          as mentioned in CVA6 user manual after reaching it to maximum value.
         pfc: 1
         test_type: 1
         cov_method: 1
