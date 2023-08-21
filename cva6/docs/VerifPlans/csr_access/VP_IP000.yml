@@ -1,7 +1,7 @@
 !Feature
 next_elt_id: 4
 name: CVA6_Machine_mode_RW_CSRs(mstatus, misa, mideleg, medeleg, mie, mtvec, mcounteren,
-  mepc, mcause, mtval, mip,)
+  mepc, mcause, mtval, mip,pmpaddr[0..7], pmpcfg[0..1])
 id: 0
 display_order: 0
 subfeatures: !!omap
