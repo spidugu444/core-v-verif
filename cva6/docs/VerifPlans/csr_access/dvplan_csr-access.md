@@ -83,7 +83,7 @@ Jean-Roch Coulon - Thales
 Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink to this heading")
 -----------------------------------------------------------------------------------------------
 
-### Feature: CVA6\_Machine\_mode\_RW\_CSRs(mstatus, misa, mideleg, medeleg, mie, mtvec, mcounteren, mepc, mcause, mtval, mip,)[](#feature-cva6-machine-mode-rw-csrs-mstatus-misa-mideleg-medeleg-mie-mtvec-mcounteren-mepc-mcause-mtval-mip "Permalink to this heading")
+### Feature: CVA6\_Machine\_mode\_RW\_CSRs(mstatus, misa, mideleg, medeleg, mie, mtvec, mcounteren, mepc, mcause, mtval, mip, pmpaddr\[0..7\], pmpcfg\[0..1\])[](#feature-cva6-machine-mode-rw-csrs-mstatus-misa-mideleg-medeleg-mie-mtvec-mcounteren-mepc-mcause-mtval-mip "Permalink to this heading")
 
 #### Sub-feature: 000\_Power-on-reset (POR) values of CSR[](#sub-feature-000-power-on-reset-por-values-of-csr "Permalink to this heading")
 
@@ -314,7 +314,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     _(none)_
     
 
-### Feature: CVA6\_Supervisor\_mode\_RW\_CSRs(sstatus,stvec, sip, sie, scounteren, sscratch, sepc, scause, stval, satp, pmpaddr\[0..7\], pmpcfg\[0..1\])[](#feature-cva6-supervisor-mode-rw-csrs-sstatus-stvec-sip-sie-scounteren-sscratch-sepc-scause-stval-satp-pmpaddr-0-7-pmpcfg-0-1 "Permalink to this heading")
+### Feature: CVA6\_Supervisor\_mode\_RW\_CSRs(sstatus,stvec, sip, sie, scounteren, sscratch, sepc, scause, stval, satp)[](#feature-cva6-supervisor-mode-rw-csrs-sstatus-stvec-sip-sie-scounteren-sscratch-sepc-scause-stval-satp-pmpaddr-0-7-pmpcfg-0-1 "Permalink to this heading")
 
 #### Sub-feature: 000\_Power-on-reset (POR) values of CSR[](#id10 "Permalink to this heading")
 
