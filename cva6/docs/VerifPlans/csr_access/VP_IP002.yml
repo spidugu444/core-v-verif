@@ -1,7 +1,7 @@
 !Feature
 next_elt_id: 4
 name: CVA6_Supervisor_mode_RW_CSRs(sstatus,stvec, sip, sie, scounteren, sscratch,
-  sepc, scause, stval, satp, pmpaddr[0..7], pmpcfg[0..1])
+  sepc, scause, stval, satp)
 id: 2
 display_order: 4
 subfeatures: !!omap
