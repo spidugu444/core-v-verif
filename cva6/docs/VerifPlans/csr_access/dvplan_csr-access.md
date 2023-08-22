@@ -83,7 +83,7 @@ Jean-Roch Coulon - Thales
 Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink to this heading")
 -----------------------------------------------------------------------------------------------
 
-### Feature: CVA6\_Machine\_mode\_RW\_CSRs(mstatus, misa, mideleg, medeleg, mie, mtvec, mcounteren, mepc, mcause, mtval, mip, pmpaddr\[0..7\], pmpcfg\[0..1\])[](#feature-cva6-machine-mode-rw-csrs-mstatus-misa-mideleg-medeleg-mie-mtvec-mcounteren-mepc-mcause-mtval-mip "Permalink to this heading")
+### Feature: CVA6\_Machine\_mode\_RW\_CSRs(mstatus, misa, mideleg, medeleg, mie, mtvec, mcounteren, mepc, mcause, mtval, mip,pmpaddr\[0..7\], pmpcfg\[0..1\])[](#feature-cva6-machine-mode-rw-csrs-mstatus-misa-mideleg-medeleg-mie-mtvec-mcounteren-mepc-mcause-mtval-mip-pmpaddr-0-7-pmpcfg-0-1 "Permalink to this heading")
 
 #### Sub-feature: 000\_Power-on-reset (POR) values of CSR[](#sub-feature-000-power-on-reset-por-values-of-csr "Permalink to this heading")
 
@@ -165,7 +165,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
     1.Ensure that Machine mode CSR can only be accessed in the correct privilege mode according to the specification.
     
-    2.Verify that trying to access Machine Mode CSR in an incorrect privilege mode raises an illegal instruction exception.
+    2.Verify that trying to access Machine Mode CSR in lower privilege mode raises an illegal instruction exception.
     
 *   **Pass/Fail Criteria:** Self-Check
     
@@ -295,7 +295,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
     1.Ensure that Machine read only CSR can only be accessed in the correct privilege mode according to the specification.
     
-    2.Verify that trying to access a Machine read only CSR in an incorrect privilege mode raises an illegal instruction exception.
+    2.Verify that trying to access a Machine read only CSR in an lower privilege mode raises an illegal instruction exception.
     
 *   **Pass/Fail Criteria:** Self-Check
     
@@ -314,7 +314,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     _(none)_
     
 
-### Feature: CVA6\_Supervisor\_mode\_RW\_CSRs(sstatus,stvec, sip, sie, scounteren, sscratch, sepc, scause, stval, satp)[](#feature-cva6-supervisor-mode-rw-csrs-sstatus-stvec-sip-sie-scounteren-sscratch-sepc-scause-stval-satp-pmpaddr-0-7-pmpcfg-0-1 "Permalink to this heading")
+### Feature: CVA6\_Supervisor\_mode\_RW\_CSRs(sstatus,stvec, sip, sie, scounteren, sscratch, sepc, scause, stval, satp)[](#feature-cva6-supervisor-mode-rw-csrs-sstatus-stvec-sip-sie-scounteren-sscratch-sepc-scause-stval-satp "Permalink to this heading")
 
 #### Sub-feature: 000\_Power-on-reset (POR) values of CSR[](#id10 "Permalink to this heading")
 
@@ -324,11 +324,11 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Feature Description**
     
-    Upon reset, RISC-V CVA6 Supervisor mode RW CSR must initialize to their respective POR value.
+    Upon reset, RISC-V CVA6 Supervisor mode RW CSRs must initialize to their respective POR value.
     
 *   **Verification Goals**
     
-    Verify that the Supervisor Mode RW CSR POR value must match with the value specified in the RISC-V CVA6 user manual.
+    Verify that the Supervisor Mode RW CSRs POR value must match with the value specified in the RISC-V CVA6 user manual.
     
 *   **Pass/Fail Criteria:** Self-Check
     
@@ -388,12 +388,12 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Feature Description**
     
-    Accessing RISC-V CVA6 Supervisor Mode CSR in different privilege modes (User,Supervisor and Machine modes).
+    Accessing RISC-V CVA6 Supervisor Mode CSRs in different privilege modes (User,Supervisor and Machine modes).
     
 *   **Verification Goals**
     
-    1.Ensure that Supervisor Mode CSR can only be accessed in the correct privilege mode according to the specification.  
-    2.Verify that trying to access a Supervisor Mode CSR in an incorrect privilege mode raises an illegal instruction exception.
+    1.Ensure that Supervisor Mode CSRs can only be accessed in the correct privilege mode according to the specification.  
+    2.Verify that trying to access a Supervisor Mode CSR in an lower privilege mode raises an illegal instruction exception.
     
 *   **Pass/Fail Criteria:** Self-Check
     
@@ -589,11 +589,11 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
 *   **Feature Description**
     
-    Upon reset, RISC-V CVA6 User mode counter CSRs must initialize to their respective POR value.
+    Upon reset, RISC-V CVA6 Machine mode counter CSRs must initialize to their respective POR value.
     
 *   **Verification Goals**
     
-    Verify that the User Mode counter CSR POR value must match with the value specified in the RISC-V CVA6 user manual.
+    Verify that the Machine Mode counter CSR POR value must match with the value specified in the RISC-V CVA6 user manual.
     
 *   **Pass/Fail Criteria:** Self-Check
     
@@ -622,8 +622,8 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
     
     This feature pertains to the verification of functionality of RISC-V mcycle, mcycleh, minstret and minstreth Control Status Register (CSR). In a RISC-V architecture
     
-    1.’mcycle’ and ‘mcycleh’ are user-level CSR that hold low 32 bits and high 32 bits respectively of the count of clock cycles executed by the processor.  
-    2.’minstret’ and ‘minstreth’ are also user-level CSR that count the total number of instructions executed by the processor.
+    1.’mcycle’ and ‘mcycleh’ are machine-level CSRs that hold low 32 bits and high 32 bits respectively of the count of clock cycles executed by the processor.  
+    2.’minstret’ and ‘minstreth’ are also machine-level CSR that count the total number of instructions executed by the processor.
     
     The functionality of machine mode counter CSR is being tested by performing two continuous reads and checking whether the value in the second read is greater than the value in the first read.
     
@@ -664,7 +664,7 @@ Module: CSR ACCESS VERIFICATION[](#module-csr-access-verification "Permalink 
 *   **Verification Goals**
     
     1.Ensure that Machine mode CSR can only be accessed in the correct privilege mode according to the specification.  
-    2.Verify that trying to access Machine Mode CSR in an incorrect privilege mode raises an illegal instruction exception.
+    2.Verify that trying to access Machine Mode CSR in lower privilege mode raises an illegal instruction exception.
     
 *   **Pass/Fail Criteria:** Self-Check
     
