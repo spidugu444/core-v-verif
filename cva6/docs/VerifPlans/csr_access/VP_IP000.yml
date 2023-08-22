@@ -76,8 +76,8 @@ subfeatures: !!omap
         ref_viewer: firefox
         verif_goals: "1.Ensure that Machine mode CSR can only be accessed in the correct
           privilege mode according to the specification.\n\n2.Verify that trying to
-          access Machine Mode CSR in an incorrect privilege mode raises an illegal
-          instruction exception."
+          access Machine Mode CSR in lower privilege mode raises an illegal instruction
+          exception."
         pfc: 1
         test_type: 1
         cov_method: 1
