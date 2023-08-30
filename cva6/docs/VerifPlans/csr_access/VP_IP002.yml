@@ -40,8 +40,9 @@ subfeatures: !!omap
         name: '000'
         tag: VP_CSR_VERIFICATION_F004_S001_I000
         description: Check the correctness of RISCV CVA6 Supervisor Mode RW CSR by
-          writing random values like 0xa5a5a5a5, 0x5a5a5a5a, 0xffa1ae40.. and read
-          using the CSR instructions defined in the instruction set architecture (ISA).
+          writing random values like inverted reset value, 0xa5a5a5a5, 0x5a5a5a5a,
+          0xffa1ae40.. and read using the CSR instructions defined in the instruction
+          set architecture (ISA).
         reqt_doc: 
           https://docs.openhwgroup.org/projects/cva6-user-manual/01_cva6_user/CV32A6_Control_Status_Registers.html
         ref_mode: page
@@ -74,35 +75,10 @@ subfeatures: !!omap
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: "1.Ensure that Supervisor Mode CSRs can only be accessed in the
-          correct privilege mode according to the specification.\n2.Verify that trying
-          to access a Supervisor Mode CSR in an lower privilege mode raises an illegal
-          instruction exception."
-        pfc: 1
-        test_type: 1
-        cov_method: 1
-        cores: 8
-        coverage_loc: ''
-        comments: ''
-- ? "003_Testing CSR with inverted reset value\n"
-  : !Subfeature
-    name: "003_Testing CSR with inverted reset value\n"
-    tag: VP_csr-access_F004_S003
-    next_elt_id: 1
-    display_order: 3
-    items: !!omap
-    - '000': !VerifItem
-        name: '000'
-        tag: VP_csr-access_F004_S003_I000
-        description: Check the behaviour of the RISC-V Supervisor mode CVA6 CSRs,when
-          reset inverted values are written to respective CSRs.
-        reqt_doc: ''
-        ref_mode: page
-        ref_page: ''
-        ref_section: ''
-        ref_viewer: firefox
-        verif_goals: "1. Verify CSR reading post write operation.\n2. Verify if the
-          core correctly handles inverted reset values or not."
+        verif_goals: "1.Ensure that Supervisor Mode CSRs can only be accessed in supervisor
+          mode and in higher privilege mode according to the RISCV specification.\n
+          2.Verify that trying to access a Supervisor Mode CSR in an lower privilege
+          mode raises an illegal instruction exception."
         pfc: 1
         test_type: 1
         cov_method: 1

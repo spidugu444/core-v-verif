@@ -40,7 +40,7 @@ subfeatures: !!omap
         tag: VP_CSR_VERIFICATION_F003_S001_I000
         description: "This feature pertains to the verification of functionality of
           RISC-V cycle, cycleh, instret and instreth Control Status Register (CSR).
-          In a RISC-V architecture\n\n1.’cycle’ and ‘mcycleh’ are user-level CSR that
+          In a RISC-V architecture\n\n1.’cycle’ and ‘cycleh’ are user-level CSR that
           hold low 32 bits and high 32 bits respectively of the count of clock cycles
           executed by the processor.\n2.’instret’ and ‘instreth’ are also user-level
           CSR that count the total number of instructions executed by the processor.\n
@@ -54,9 +54,11 @@ subfeatures: !!omap
         ref_section: ''
         ref_viewer: firefox
         verif_goals: "1.Verify that these CSR are properly initialized.\n2.Initiate
-          a second read from the counter CSR immediately after the first read.\n3.Verify
+          a second read from the counter CSR immediately after the first read.\n3.Ensure
           that the value of the second read from counter CSR is greater than the value
-          of the initial read.\n4.Confirm that counter CSRs are correctly incrementing."
+          of the initial read.\n4.Confirm that user mode counter CSRs are incrementing.\n
+          \nNote: This algorithm is only an \"approximate test\" of the functionality
+          of these CSRs."
         pfc: 1
         test_type: 1
         cov_method: -1
@@ -80,8 +82,8 @@ subfeatures: !!omap
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: Ensure that User mode counter CSR can be accessed in all privilege
-          modes by configuring scounteren and mcounteren CSRs as per riscv specification.
+        verif_goals: Ensure that User mode counter CSRs can be accessed in user and
+          Supervisor modes by configuring MCOUNTEREN CSR.
         pfc: 1
         test_type: 1
         cov_method: 1
